@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "393590519653",
+    "project_id": "opo-finance-i6ths1",
+    "storage_bucket": "opo-finance-i6ths1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:393590519653:android:4ec91e744e97cdba4b938c",
+        "android_client_info": {
+          "package_name": "com.mycompany.opofinance"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkA2Bt33KT3JpkdCfpo42TCJfTVOgJ6aM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
