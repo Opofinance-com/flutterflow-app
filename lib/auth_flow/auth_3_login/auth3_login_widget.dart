@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -395,145 +396,183 @@ class _Auth3LoginWidgetState extends State<Auth3LoginWidget>
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 16.0),
-                                          child: FFButtonWidget(
-                                            onPressed: () async {
-                                              Function() navigate = () {};
-                                              _model.apiResulLogin =
-                                                  await RestAPIGroup.loginCall
-                                                      .call(
-                                                email: _model
-                                                    .emailAddressController
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onDoubleTap: () async {
+                                              _model.apiResultLogin =
+                                                  await actions.loginAction(
+                                                _model.emailAddressController
                                                     .text,
-                                                password: _model
-                                                    .passwordController.text,
+                                                _model.passwordController.text,
                                               );
-                                              if ((_model.apiResulLogin
-                                                      ?.succeeded ??
-                                                  true)) {
-                                                GoRouter.of(context)
-                                                    .prepareAuthEvent();
-                                                await authManager.signIn(
-                                                  authenticationToken:
-                                                      RestAPIGroup.loginCall
-                                                          .token(
-                                                            (_model.apiResulLogin
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                          )
-                                                          .toString(),
-                                                  tokenExpiration:
-                                                      dateTimeFromSecondsSinceEpoch(
-                                                          RestAPIGroup.loginCall
-                                                              .exp(
-                                                    (_model.apiResulLogin
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                  )),
-                                                  authUid:
-                                                      RestAPIGroup.loginCall
-                                                          .clientId(
-                                                            (_model.apiResulLogin
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                          )
-                                                          .toString(),
-                                                  userData: UserStruct(
-                                                    uid: RestAPIGroup.loginCall
-                                                        .clientId(
-                                                          (_model.apiResulLogin
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                        )
-                                                        .toString(),
-                                                    firstName:
-                                                        RestAPIGroup.loginCall
-                                                            .firstName(
-                                                              (_model.apiResulLogin
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                            )
-                                                            .toString(),
-                                                    lastName:
-                                                        RestAPIGroup.loginCall
-                                                            .lastName(
-                                                              (_model.apiResulLogin
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                            )
-                                                            .toString(),
-                                                    phone:
-                                                        RestAPIGroup.loginCall
-                                                            .phone(
-                                                              (_model.apiResulLogin
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                            )
-                                                            .toString(),
-                                                  ),
-                                                );
-                                                navigate = () =>
-                                                    context.goNamedAuth(
-                                                        'Deposit',
-                                                        context.mounted);
-                                              } else {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      RestAPIGroup.loginCall
-                                                          .message(
-                                                            (_model.apiResulLogin
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                          )
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
+                                              await showDialog(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    content: Text(_model
+                                                        .apiResultLogin!
+                                                        .toString()),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: const Text('Ok'),
                                                       ),
-                                                    ),
-                                                    duration: const Duration(
-                                                        milliseconds: 4000),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondary,
-                                                  ),
-                                                );
-                                              }
-
-                                              navigate();
+                                                    ],
+                                                  );
+                                                },
+                                              );
 
                                               setState(() {});
                                             },
-                                            text: 'Login',
-                                            options: FFButtonOptions(
-                                              width: 200.0,
-                                              height: 44.0,
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        color: Colors.white,
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                Function() navigate = () {};
+                                                _model.apiResulLogin =
+                                                    await RestAPIGroup.loginCall
+                                                        .call(
+                                                  email: _model
+                                                      .emailAddressController
+                                                      .text,
+                                                  password: _model
+                                                      .passwordController.text,
+                                                );
+                                                if ((_model.apiResulLogin
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  GoRouter.of(context)
+                                                      .prepareAuthEvent();
+                                                  await authManager.signIn(
+                                                    authenticationToken:
+                                                        RestAPIGroup.loginCall
+                                                            .token(
+                                                              (_model.apiResulLogin
+                                                                      ?.jsonBody ??
+                                                                  ''),
+                                                            )
+                                                            .toString(),
+                                                    tokenExpiration:
+                                                        dateTimeFromSecondsSinceEpoch(
+                                                            RestAPIGroup
+                                                                .loginCall
+                                                                .exp(
+                                                      (_model.apiResulLogin
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                    )),
+                                                    authUid:
+                                                        RestAPIGroup.loginCall
+                                                            .clientId(
+                                                              (_model.apiResulLogin
+                                                                      ?.jsonBody ??
+                                                                  ''),
+                                                            )
+                                                            .toString(),
+                                                    userData: UserStruct(
+                                                      uid:
+                                                          RestAPIGroup.loginCall
+                                                              .clientId(
+                                                                (_model.apiResulLogin
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                              )
+                                                              .toString(),
+                                                      firstName:
+                                                          RestAPIGroup.loginCall
+                                                              .firstName(
+                                                                (_model.apiResulLogin
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                              )
+                                                              .toString(),
+                                                      lastName:
+                                                          RestAPIGroup.loginCall
+                                                              .lastName(
+                                                                (_model.apiResulLogin
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                              )
+                                                              .toString(),
+                                                      phone:
+                                                          RestAPIGroup.loginCall
+                                                              .phone(
+                                                                (_model.apiResulLogin
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                              )
+                                                              .toString(),
+                                                    ),
+                                                  );
+                                                  navigate = () =>
+                                                      context.goNamedAuth(
+                                                          'Deposit',
+                                                          context.mounted);
+                                                } else {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        RestAPIGroup.loginCall
+                                                            .message(
+                                                              (_model.apiResulLogin
+                                                                      ?.jsonBody ??
+                                                                  ''),
+                                                            )
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
                                                       ),
-                                              elevation: 3.0,
-                                              borderSide: const BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,
+                                                      duration: const Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
+                                                    ),
+                                                  );
+                                                }
+
+                                                navigate();
+
+                                                setState(() {});
+                                              },
+                                              text: 'Login',
+                                              options: FFButtonOptions(
+                                                width: 200.0,
+                                                height: 44.0,
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 0.0),
+                                                iconPadding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: Colors.white,
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: const BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
                                             ),
                                           ),
                                         ),

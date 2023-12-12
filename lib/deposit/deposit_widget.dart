@@ -1,13 +1,12 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
+import '/components/deposit_card_widget.dart';
+import '/components/side_bar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'deposit_model.dart';
 export 'deposit_model.dart';
 
@@ -18,26 +17,10 @@ class DepositWidget extends StatefulWidget {
   _DepositWidgetState createState() => _DepositWidgetState();
 }
 
-class _DepositWidgetState extends State<DepositWidget>
-    with TickerProviderStateMixin {
+class _DepositWidgetState extends State<DepositWidget> {
   late DepositModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = {
-    'containerOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        SaturateEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-  };
 
   @override
   void initState() {
@@ -179,195 +162,102 @@ class _DepositWidgetState extends State<DepositWidget>
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).primaryBackground,
             ),
-            child: Column(
+            child: Row(
               mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                if (responsiveVisibility(
+                  context: context,
+                  phone: false,
+                  tablet: false,
+                ))
+                  Container(
+                    width: 270.0,
+                    height: double.infinity,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      borderRadius: BorderRadius.circular(0.0),
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).alternate,
+                        width: 1.0,
+                      ),
+                    ),
+                    child: wrapWithModel(
+                      model: _model.sideBarModel,
+                      updateCallback: () => setState(() {}),
+                      child: const SideBarWidget(),
+                    ),
+                  ),
                 Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(30.0, 30.0, 30.0, 30.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
                     child: Builder(
                       builder: (context) {
                         final depositConfigs =
                             _model.depositConfigsJson.toList();
-                        return ListView.separated(
+                        return GridView.builder(
                           padding: EdgeInsets.zero,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: () {
+                              if (MediaQuery.sizeOf(context).width <
+                                  kBreakpointSmall) {
+                                return 1;
+                              } else if (MediaQuery.sizeOf(context).width <
+                                  kBreakpointMedium) {
+                                return 2;
+                              } else if (MediaQuery.sizeOf(context).width <
+                                  kBreakpointLarge) {
+                                return 2;
+                              } else {
+                                return 3;
+                              }
+                            }(),
+                            crossAxisSpacing: 10.0,
+                            mainAxisSpacing: 10.0,
+                            childAspectRatio: 1.4,
+                          ),
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: depositConfigs.length,
-                          separatorBuilder: (_, __) => const SizedBox(height: 20.0),
                           itemBuilder: (context, depositConfigsIndex) {
                             final depositConfigsItem =
                                 depositConfigs[depositConfigsIndex];
-                            return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  4.0, 4.0, 4.0, 4.0),
-                              child: Container(
-                                width: 370.0,
-                                height: 230.0,
-                                decoration: BoxDecoration(
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      blurRadius: 6.0,
-                                      color: Color(0x4B1A1F24),
-                                      offset: Offset(0.0, 2.0),
+                            return wrapWithModel(
+                              model: _model.depositCardModels.getModel(
+                                depositConfigsIndex.toString(),
+                                depositConfigsIndex,
+                              ),
+                              updateCallback: () => setState(() {}),
+                              child: DepositCardWidget(
+                                key: Key(
+                                  'Keyxt9_${depositConfigsIndex.toString()}',
+                                ),
+                                logo: valueOrDefault<String>(
+                                  getJsonField(
+                                    depositConfigsItem,
+                                    r'''$.logo''',
+                                  ).toString(),
+                                  '\$.logo',
+                                ),
+                                type: getJsonField(
+                                  depositConfigsItem,
+                                  r'''$.displayName''',
+                                ).toString(),
+                                loginSid: RestAPIGroup.walletAccountsCall
+                                    .loginSid(
+                                      (_model.apiResultAccounts?.jsonBody ??
+                                          ''),
                                     )
-                                  ],
-                                  gradient: const LinearGradient(
-                                    colors: [
-                                      Color(0xFFEE8B60),
-                                      Color(0xFF4B39EF)
-                                    ],
-                                    stops: [0.0, 1.0],
-                                    begin: AlignmentDirectional(0.94, -1.0),
-                                    end: AlignmentDirectional(-0.94, 1.0),
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
+                                    .toString(),
+                                paymentSystem: getJsonField(
+                                  depositConfigsItem,
+                                  r'''$.id''',
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 16.0, 16.0, 16.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Image.network(
-                                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/default-project-widgets-xzsp5v/assets/ddr0sc80h0hs/@3xlogoMark_outline.png',
-                                        width: 44.0,
-                                        height: 44.0,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      Text(
-                                        getJsonField(
-                                          depositConfigsItem,
-                                          r'''$.displayName''',
-                                        ).toString(),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Plus Jakarta Sans',
-                                              color: Colors.white,
-                                              fontSize: 14.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                      Text(
-                                        '\$1',
-                                        style: FlutterFlowTheme.of(context)
-                                            .displaySmall
-                                            .override(
-                                              fontFamily: 'Outfit',
-                                              color: Colors.white,
-                                              fontSize: 32.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 12.0, 0.0, 4.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Processing Time ',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Roboto Mono',
-                                                    color: Colors.white,
-                                                    fontSize: 14.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                            ),
-                                            Text(
-                                              'Instant',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Roboto Mono',
-                                                    color: Colors.white,
-                                                    fontSize: 14.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Flexible(
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            _model.depositBlockResponse =
-                                                await _model.deposit(
-                                              context,
-                                              amount: 100,
-                                              paymentSystem: getJsonField(
-                                                depositConfigsItem,
-                                                r'''$.id''',
-                                              ),
-                                            );
-                                            await showDialog(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return AlertDialog(
-                                                  content: Text(_model
-                                                      .depositBlockResponse!
-                                                      .toString()),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: const Text('Ok'),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            );
-
-                                            setState(() {});
-                                          },
-                                          text: 'Deposit',
-                                          options: FFButtonOptions(
-                                            width: double.infinity,
-                                            height: 40.0,
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 0.0, 24.0, 0.0),
-                                            iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: const Color(0x00FFFFFF),
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color: Colors.white,
-                                                    ),
-                                            elevation: 0.0,
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .tertiary,
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ).animateOnPageLoad(animationsMap[
-                                  'containerOnPageLoadAnimation']!),
+                                amount: 100,
+                              ),
                             );
                           },
                         );

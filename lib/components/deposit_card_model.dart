@@ -1,72 +1,27 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
-import '/components/deposit_card_widget.dart';
-import '/components/side_bar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'deposit_widget.dart' show DepositWidget;
+import 'deposit_card_widget.dart' show DepositCardWidget;
 import 'package:flutter/material.dart';
 
-class DepositModel extends FlutterFlowModel<DepositWidget> {
-  ///  Local state fields for this page.
+class DepositCardModel extends FlutterFlowModel<DepositCardWidget> {
+  ///  State fields for stateful widgets in this component.
 
-  List<DepositConfigStruct> depositList = [];
-  void addToDepositList(DepositConfigStruct item) => depositList.add(item);
-  void removeFromDepositList(DepositConfigStruct item) =>
-      depositList.remove(item);
-  void removeAtIndexFromDepositList(int index) => depositList.removeAt(index);
-  void insertAtIndexInDepositList(int index, DepositConfigStruct item) =>
-      depositList.insert(index, item);
-  void updateDepositListAtIndex(
-          int index, Function(DepositConfigStruct) updateFn) =>
-      depositList[index] = updateFn(depositList[index]);
-
-  List<dynamic> depositConfigsJson = [];
-  void addToDepositConfigsJson(dynamic item) => depositConfigsJson.add(item);
-  void removeFromDepositConfigsJson(dynamic item) =>
-      depositConfigsJson.remove(item);
-  void removeAtIndexFromDepositConfigsJson(int index) =>
-      depositConfigsJson.removeAt(index);
-  void insertAtIndexInDepositConfigsJson(int index, dynamic item) =>
-      depositConfigsJson.insert(index, item);
-  void updateDepositConfigsJsonAtIndex(int index, Function(dynamic) updateFn) =>
-      depositConfigsJson[index] = updateFn(depositConfigsJson[index]);
-
-  ///  State fields for stateful widgets in this page.
-
-  final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (WalletAccounts)] action in Deposit widget.
-  ApiCallResponse? apiResultAccounts;
-  // Stores action output result for [Backend Call - API (Deposit Configs)] action in Deposit widget.
-  ApiCallResponse? apiResultWalletAccounts;
-  // Model for SideBar component.
-  late SideBarModel sideBarModel;
-  // Models for depositCard dynamic component.
-  late FlutterFlowDynamicModels<DepositCardModel> depositCardModels;
+  // Stores action output result for [Action Block - depositFlow] action in Button widget.
+  dynamic apiResultDepositFlow;
 
   /// Initialization and disposal methods.
 
   @override
-  void initState(BuildContext context) {
-    sideBarModel = createModel(context, () => SideBarModel());
-    depositCardModels = FlutterFlowDynamicModels(() => DepositCardModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-    sideBarModel.dispose();
-    depositCardModels.dispose();
-  }
+  void dispose() {}
 
   /// Action blocks are added here.
 
-  Future<dynamic> deposit(
-    BuildContext context, {
-    int? amount,
-    int? paymentSystem,
-  }) async {
+  Future<dynamic> depositFlow(BuildContext context) async {
     ApiCallResponse? depositStepOneResponse;
     ApiCallResponse? depositStepTwoResponse;
     ApiCallResponse? depositStepThreeResponse;
@@ -74,13 +29,8 @@ class DepositModel extends FlutterFlowModel<DepositWidget> {
     // DepositStepOne
     depositStepOneResponse = await RestAPIGroup.depositStepOneCall.call(
       authToken: currentAuthenticationToken,
-      loginSid: RestAPIGroup.walletAccountsCall
-          .loginSid(
-            (apiResultAccounts?.jsonBody ?? ''),
-          )
-          .toString()
-          .toString(),
-      paymentSystem: paymentSystem,
+      loginSid: widget.loginSid,
+      paymentSystem: widget.paymentSystem,
     );
     if ((depositStepOneResponse.succeeded ?? true)) {
       // DepositStepTwo
@@ -93,7 +43,7 @@ class DepositModel extends FlutterFlowModel<DepositWidget> {
             .toList()
             .first
             .toString(),
-        amount: amount,
+        amount: widget.amount,
       );
       if ((depositStepTwoResponse.succeeded ?? true)) {
         // DepositStepThree

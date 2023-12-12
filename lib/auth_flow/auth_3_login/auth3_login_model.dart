@@ -18,6 +18,8 @@ class Auth3LoginModel extends FlutterFlowModel<Auth3LoginWidget> {
   String? Function(BuildContext, String?)? passwordControllerValidator;
   // Stores action output result for [Backend Call - API (Login)] action in Button widget.
   ApiCallResponse? apiResulLogin;
+  // Stores action output result for [Custom Action - loginAction] action in Button widget.
+  dynamic apiResultLogin;
 
   /// Initialization and disposal methods.
 

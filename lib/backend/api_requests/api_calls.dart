@@ -146,7 +146,6 @@ class LoginCall {
     String? email = '',
     String? password = '',
     bool? rememberMe,
-    String? exp = '',
     String? authToken =
         '5942c62bebe30c970c57c02682e9a52f2cf715cf6ecfb327d27708ffde94078fec4ef2202e5b999c8e5269d8ac5f0e1241e81cfee864a1a7b14ef165',
     String? apiVersion = 'version=1.0.0',
