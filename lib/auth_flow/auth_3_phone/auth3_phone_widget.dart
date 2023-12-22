@@ -101,7 +101,7 @@ class _Auth3PhoneWidgetState extends State<Auth3PhoneWidget>
                 Expanded(
                   flex: 5,
                   child: Align(
-                    alignment: const AlignmentDirectional(0.00, -1.00),
+                    alignment: const AlignmentDirectional(0.0, -1.0),
                     child: Container(
                       width: double.infinity,
                       height: double.infinity,
@@ -123,10 +123,9 @@ class _Auth3PhoneWidgetState extends State<Auth3PhoneWidget>
               Expanded(
                 flex: 5,
                 child: Align(
-                  alignment: const AlignmentDirectional(0.00, 0.00),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16.0),
                       child: Container(
@@ -138,7 +137,7 @@ class _Auth3PhoneWidgetState extends State<Auth3PhoneWidget>
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.0),
                         ),
-                        alignment: const AlignmentDirectional(0.00, -1.00),
+                        alignment: const AlignmentDirectional(0.0, -1.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -155,7 +154,7 @@ class _Auth3PhoneWidgetState extends State<Auth3PhoneWidget>
                                     topRight: Radius.circular(0.0),
                                   ),
                                 ),
-                                alignment: const AlignmentDirectional(-1.00, 0.00),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
@@ -183,7 +182,7 @@ class _Auth3PhoneWidgetState extends State<Auth3PhoneWidget>
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.00, 0.00),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
@@ -315,7 +314,7 @@ class _Auth3PhoneWidgetState extends State<Auth3PhoneWidget>
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(1.00, -1.00),
+                                            const AlignmentDirectional(1.0, -1.0),
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(

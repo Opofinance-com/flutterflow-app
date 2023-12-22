@@ -107,7 +107,7 @@ class _Auth3CreateWidgetState extends State<Auth3CreateWidget>
                 Expanded(
                   flex: 5,
                   child: Align(
-                    alignment: const AlignmentDirectional(0.00, -1.00),
+                    alignment: const AlignmentDirectional(0.0, -1.0),
                     child: Container(
                       width: double.infinity,
                       height: double.infinity,
@@ -129,10 +129,9 @@ class _Auth3CreateWidgetState extends State<Auth3CreateWidget>
               Expanded(
                 flex: 5,
                 child: Align(
-                  alignment: const AlignmentDirectional(0.00, 0.00),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16.0),
                       child: Container(
@@ -144,7 +143,7 @@ class _Auth3CreateWidgetState extends State<Auth3CreateWidget>
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.0),
                         ),
-                        alignment: const AlignmentDirectional(0.00, -1.00),
+                        alignment: const AlignmentDirectional(0.0, -1.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -161,7 +160,7 @@ class _Auth3CreateWidgetState extends State<Auth3CreateWidget>
                                     topRight: Radius.circular(0.0),
                                   ),
                                 ),
-                                alignment: const AlignmentDirectional(-1.00, 0.00),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
@@ -189,7 +188,7 @@ class _Auth3CreateWidgetState extends State<Auth3CreateWidget>
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.00, 0.00),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 32.0),
@@ -491,7 +490,7 @@ class _Auth3CreateWidgetState extends State<Auth3CreateWidget>
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(1.00, -1.00),
+                                            const AlignmentDirectional(1.0, -1.0),
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
@@ -638,7 +637,7 @@ class _Auth3CreateWidgetState extends State<Auth3CreateWidget>
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(-1.00, -1.00),
+                                            const AlignmentDirectional(-1.0, -1.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             context.pushNamed(

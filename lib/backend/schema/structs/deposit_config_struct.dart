@@ -67,8 +67,9 @@ class DepositConfigStruct extends BaseStruct {
         paymentDetailsConfigId: data['paymentDetailsConfigId'] as String?,
       );
 
-  static DepositConfigStruct? maybeFromMap(dynamic data) =>
-      data is Map<String, dynamic> ? DepositConfigStruct.fromMap(data) : null;
+  static DepositConfigStruct? maybeFromMap(dynamic data) => data is Map
+      ? DepositConfigStruct.fromMap(data.cast<String, dynamic>())
+      : null;
 
   Map<String, dynamic> toMap() => {
         'id': _id,

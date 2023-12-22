@@ -70,7 +70,7 @@ class _DepositCardWidgetState extends State<DepositCardWidget>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
+      padding: const EdgeInsets.all(4.0),
       child: Container(
         width: 370.0,
         height: 230.0,
@@ -91,7 +91,7 @@ class _DepositCardWidgetState extends State<DepositCardWidget>
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

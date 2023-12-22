@@ -33,8 +33,8 @@ class DepositConfigDescriptionStruct extends BaseStruct {
       );
 
   static DepositConfigDescriptionStruct? maybeFromMap(dynamic data) =>
-      data is Map<String, dynamic>
-          ? DepositConfigDescriptionStruct.fromMap(data)
+      data is Map
+          ? DepositConfigDescriptionStruct.fromMap(data.cast<String, dynamic>())
           : null;
 
   Map<String, dynamic> toMap() => {

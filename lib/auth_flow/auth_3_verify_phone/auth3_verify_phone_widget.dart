@@ -104,7 +104,7 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
                 Expanded(
                   flex: 5,
                   child: Align(
-                    alignment: const AlignmentDirectional(0.00, -1.00),
+                    alignment: const AlignmentDirectional(0.0, -1.0),
                     child: Container(
                       width: double.infinity,
                       height: double.infinity,
@@ -126,10 +126,9 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
               Expanded(
                 flex: 5,
                 child: Align(
-                  alignment: const AlignmentDirectional(0.00, 0.00),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16.0),
                       child: Container(
@@ -141,7 +140,7 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.0),
                         ),
-                        alignment: const AlignmentDirectional(0.00, -1.00),
+                        alignment: const AlignmentDirectional(0.0, -1.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -158,7 +157,7 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
                                     topRight: Radius.circular(0.0),
                                   ),
                                 ),
-                                alignment: const AlignmentDirectional(-1.00, 0.00),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
@@ -186,7 +185,7 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.00, 0.00),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
@@ -295,8 +294,12 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
                                           fieldHeight: 48.0,
                                           fieldWidth: 48.0,
                                           borderWidth: 2.0,
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(12.0),
+                                            bottomRight: Radius.circular(12.0),
+                                            topLeft: Radius.circular(12.0),
+                                            topRight: Radius.circular(12.0),
+                                          ),
                                           shape: PinCodeFieldShape.box,
                                           activeColor:
                                               FlutterFlowTheme.of(context)
@@ -327,7 +330,7 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(1.00, -1.00),
+                                            const AlignmentDirectional(1.0, -1.0),
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(

@@ -191,8 +191,7 @@ class _DepositWidgetState extends State<DepositWidget> {
                   ),
                 Expanded(
                   child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: Builder(
                       builder: (context) {
                         final depositConfigs =

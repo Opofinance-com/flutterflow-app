@@ -109,7 +109,7 @@ class AccountStruct extends BaseStruct {
       );
 
   static AccountStruct? maybeFromMap(dynamic data) =>
-      data is Map<String, dynamic> ? AccountStruct.fromMap(data) : null;
+      data is Map ? AccountStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'login': _login,
