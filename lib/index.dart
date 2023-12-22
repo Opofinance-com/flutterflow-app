@@ -1,5 +1,4 @@
 // Export pages
-export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
 export '/auth_flow/auth_3_create/auth3_create_widget.dart'
     show Auth3CreateWidget;
 export '/auth_flow/auth_3_login/auth3_login_widget.dart' show Auth3LoginWidget;

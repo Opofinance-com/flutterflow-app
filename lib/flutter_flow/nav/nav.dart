@@ -82,11 +82,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? const DepositWidget() : const Auth3LoginWidget(),
         ),
         FFRoute(
-          name: 'HomePage',
-          path: '/homePage',
-          builder: (context, params) => const HomePageWidget(),
-        ),
-        FFRoute(
           name: 'auth_3_Create',
           path: '/auth3Create',
           builder: (context, params) => const Auth3CreateWidget(),
