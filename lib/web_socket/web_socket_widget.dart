@@ -30,9 +30,7 @@ class _WebSocketWidgetState extends State<WebSocketWidget> {
       await actions.webSocketReceiver(
         'wss://socketsbay.com/wss/v2/1/demo/mojtaba',
         () async {
-          setState(() {
-            FFAppState().addToWebSocketData('wow');
-          });
+          setState(() {});
         },
       );
     });
