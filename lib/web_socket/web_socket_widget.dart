@@ -1,6 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'web_socket_model.dart';
@@ -22,6 +24,18 @@ class _WebSocketWidgetState extends State<WebSocketWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => WebSocketModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await actions.webSocketReceiver(
+        'wss://socketsbay.com/wss/v2/1/demo/mojtaba',
+        () async {
+          setState(() {
+            FFAppState().addToWebSocketData('wow');
+          });
+        },
+      );
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -85,7 +99,7 @@ class _WebSocketWidgetState extends State<WebSocketWidget> {
                       final webSocketListItem =
                           webSocketList[webSocketListIndex];
                       return Text(
-                        'Hello World',
+                        webSocketListItem,
                         style: FlutterFlowTheme.of(context).bodyMedium,
                       );
                     },

@@ -100,10 +100,6 @@ class _Auth3LoginWidgetState extends State<Auth3LoginWidget>
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             context.pushNamed('webSocket');
-
-            await actions.webSocketReceiver(
-              'wss://socketsbay.com/wss/v2/1/demo/mojtaba',
-            );
           },
           backgroundColor: FlutterFlowTheme.of(context).primary,
           elevation: 8.0,

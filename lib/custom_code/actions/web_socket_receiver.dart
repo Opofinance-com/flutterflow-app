@@ -9,12 +9,17 @@ import 'package:flutter/material.dart';
 
 import 'package:web_socket_channel/io.dart';
 
-Future webSocketReceiver(String url) async {
+Future webSocketReceiver(
+  String url,
+  Future<dynamic> Function() handler,
+) async {
   // Add your function code here!
   final channel = IOWebSocketChannel.connect(url);
 
   channel.stream.listen((message) {
     FFAppState().addToWebSocketData(message);
+
+    handler();
     print('Received: $message');
   }, onDone: () {
     print('WebSocket connection closed');
