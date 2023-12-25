@@ -113,6 +113,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/deposit',
           requireAuth: true,
           builder: (context, params) => const DepositWidget(),
+        ),
+        FFRoute(
+          name: 'webSocket',
+          path: '/webSocket',
+          builder: (context, params) => const WebSocketWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

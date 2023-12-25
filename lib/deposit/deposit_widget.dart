@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'deposit_model.dart';
 export 'deposit_model.dart';
 
@@ -130,6 +131,8 @@ class _DepositWidgetState extends State<DepositWidget> {
         ),
       );
     }
+
+    context.watch<FFAppState>();
 
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus

@@ -8,3 +8,4 @@ export '/auth_flow/auth_3_verify_phone/auth3_verify_phone_widget.dart'
 export '/auth_flow/auth_3_forgot_password/auth3_forgot_password_widget.dart'
     show Auth3ForgotPasswordWidget;
 export '/deposit/deposit_widget.dart' show DepositWidget;
+export '/web_socket/web_socket_widget.dart' show WebSocketWidget;

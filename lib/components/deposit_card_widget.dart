@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:provider/provider.dart';
 import 'deposit_card_model.dart';
 export 'deposit_card_model.dart';
 
@@ -69,6 +70,8 @@ class _DepositCardWidgetState extends State<DepositCardWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Container(

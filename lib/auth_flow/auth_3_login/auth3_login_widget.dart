@@ -9,6 +9,7 @@ import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:provider/provider.dart';
 import 'auth3_login_model.dart';
 export 'auth3_login_model.dart';
 
@@ -87,6 +88,8 @@ class _Auth3LoginWidgetState extends State<Auth3LoginWidget>
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -94,6 +97,22 @@ class _Auth3LoginWidgetState extends State<Auth3LoginWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            context.pushNamed('webSocket');
+
+            await actions.webSocketReceiver(
+              'wss://socketsbay.com/wss/v2/1/demo/mojtaba',
+            );
+          },
+          backgroundColor: FlutterFlowTheme.of(context).primary,
+          elevation: 8.0,
+          child: Icon(
+            Icons.add,
+            color: FlutterFlowTheme.of(context).info,
+            size: 24.0,
+          ),
+        ),
         body: SafeArea(
           top: true,
           child: Row(

@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'side_bar_model.dart';
 export 'side_bar_model.dart';
 
@@ -38,6 +39,8 @@ class _SideBarWidgetState extends State<SideBarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
       child: Column(

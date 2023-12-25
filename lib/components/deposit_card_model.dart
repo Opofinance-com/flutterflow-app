@@ -1,4 +1,3 @@
-import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -28,14 +27,12 @@ class DepositCardModel extends FlutterFlowModel<DepositCardWidget> {
 
     // DepositStepOne
     depositStepOneResponse = await RestAPIGroup.depositStepOneCall.call(
-      authToken: currentAuthenticationToken,
       loginSid: widget.loginSid,
       paymentSystem: widget.paymentSystem,
     );
     if ((depositStepOneResponse.succeeded ?? true)) {
       // DepositStepTwo
       depositStepTwoResponse = await RestAPIGroup.depositStepTwoCall.call(
-        authToken: currentAuthenticationToken,
         flowDepositInstance: (RestAPIGroup.depositStepOneCall.values(
           (depositStepOneResponse.jsonBody ?? ''),
         ) as List)
@@ -48,7 +45,6 @@ class DepositCardModel extends FlutterFlowModel<DepositCardWidget> {
       if ((depositStepTwoResponse.succeeded ?? true)) {
         // DepositStepThree
         depositStepThreeResponse = await RestAPIGroup.depositStepThreeCall.call(
-          authToken: currentAuthenticationToken,
           flowDepositInstance: (RestAPIGroup.depositStepTwoCall.values(
             (depositStepTwoResponse.jsonBody ?? ''),
           ) as List)

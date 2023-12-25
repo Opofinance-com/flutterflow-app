@@ -7,6 +7,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:provider/provider.dart';
 import 'auth3_verify_phone_model.dart';
 export 'auth3_verify_phone_model.dart';
 
@@ -83,6 +84,8 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
         ),
       );
     }
+
+    context.watch<FFAppState>();
 
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
